@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ImageCard from "./components/ImageCard";
+import ImageSearch from "./components/ImageSearch";
 
 function App() {
   // App level state
@@ -17,10 +18,16 @@ function App() {
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [term]); // This array is important because you can pass any state prop here and if that state prop changes this entire function will re-run
 
   return (
     <div className="container mx-auto">
+      <ImageSearch searchText={(text) => setTerm(text)} />
+
+      {!isLoading && images.length === 0 && (
+        <h1 className="text-5xl text-center mx-auto mt-32">No images found</h1>
+      )}
+
       {isLoading ? (
         <h1 className="text-6xl text-center mx-auto mt-32">Loading...</h1>
       ) : (
