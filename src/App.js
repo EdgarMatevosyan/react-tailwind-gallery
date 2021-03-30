@@ -8,6 +8,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [term, setTerm] = useState("");
 
+  // This is a good example of how to use a search input with state to refresh the results
   useEffect(() => {
     fetch(
       `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&q=${term}&image_type=photo&pretty=true`
